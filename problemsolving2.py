@@ -37,7 +37,8 @@
 #14. Create an if statement for when it is 7 (because once a number gets to single digits and is anything other than 1 or 7, we know it can never be happy)
 #15. return false if the number is single digit and not 7
 #16. debug; see issue because number isn't updating
-#17. set new_num equal to num at the end of the for loop. move where num is converted to a string to within the while loop, so that the string updates with each round
+#17. set new_num equal to num at the end of the for loop. move where num is converted to a string to within the while loop, 
+# so that the string updates with each round
 #18. debug; issue because new_num isn't resetting. move the statement setting new_num to 0 within the while loop
 #19. return True at end, if function makes it past the while loop
 
@@ -73,12 +74,15 @@ print(is_happy)
 
 # 1. create and name the function
 # 2. create a for loop with a range 1-101 so that numbers 1 through 100 are addressed
-# 3. create an if statement to see if num remainder 2 equals 0. Since 2 is the only prime number divisible by 2, create a nested if statement to see if num is equal to 2
+# 3. create an if statement to see if num remainder 2 equals 0. Since 2 is the only prime number divisible by 2, 
+# create a nested if statement to see if num is equal to 2
 # 4. if num is equal to 2, print num because that means it is prime
 # 5. create further elif statements with nested if statements for all other single digit prime numbers
-# 6. the thought is, all numbers are divisible by 1 so we can skip that. otherwise, a non-prime number will have to be divisible by at least one of these single digit numbers.
+# 6. the thought is, all numbers are divisible by 1 so we can skip that. otherwise, a non-prime number will have to be 
+# divisible by at least one of these single digit numbers.
 # 7. make else statement so if none of the conditions are met, it prints num
 # 8. put in parameters instead of numbers for the range, so the range can be adjusted
+# 9. debug; no issues
 
 def print_prime_nums_in_range(starting_num, ending_num):
     for num in range(starting_num, (ending_num + 1)):
@@ -107,3 +111,34 @@ print_prime_nums_in_range(1, 51)
 # b. Write a method that does the Fibonacci sequence starting at 1
 
 # c. HARDER VERSION: Write a method that does the Fibonacci sequence starting at a number that a user inputs
+
+
+#Steps to solve:
+#1. create and name a function
+#2. create a variable to hold the list of numbers and set it equal to [1]
+#3. create a while loop for while the length of the list is less than 15, so it doesn't go on forever
+#4. create an if statement for when the list has only one value. Append that value to the list 
+#5. outside the if statement but still in the while loop, create a variable to hold a new value
+#6. add the last value in the list to the second to last value in the list and store it in the new variable
+#7. append the new value to the end of the list
+#6. test and debug; works. add in parameter instead of 1, and test again with new number
+#7. Now to change so that it works with user input: add user input as argument to be passed into function, and convert to integer
+
+def fibonacci(num):
+    sequence = [num]
+    while len(sequence) < 15:
+        if len(sequence) == 1:
+            sequence.append(sequence[0])
+        else:
+            new_value = sequence[-1] + sequence[-2]
+            sequence.append(new_value)
+    return sequence
+
+fibonacci_sequence = fibonacci(1)
+print(fibonacci_sequence)
+
+fib_number = int(input("Enter a number to use as a starting point for our Fibonacci sequence: "))
+print(fibonacci(fib_number))
+
+start_fibonacci = fibonacci(int(input("Enter a number to begin our Fibonacci sequence: ")))
+print(start_fibonacci)
