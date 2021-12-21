@@ -71,8 +71,34 @@ print(is_happy)
 
 # b. Write a method that prints out all prime numbers between 1 and 100
 
+# 1. create and name the function
+# 2. create a for loop with a range 1-101 so that numbers 1 through 100 are addressed
+# 3. create an if statement to see if num remainder 2 equals 0. Since 2 is the only prime number divisible by 2, create a nested if statement to see if num is equal to 2
+# 4. if num is equal to 2, print num because that means it is prime
+# 5. create further elif statements with nested if statements for all other single digit prime numbers
+# 6. the thought is, all numbers are divisible by 1 so we can skip that. otherwise, a non-prime number will have to be divisible by at least one of these single digit numbers.
+# 7. make else statement so if none of the conditions are met, it prints num
+# 8. put in parameters instead of numbers for the range, so the range can be adjusted
+
+def print_prime_nums_in_range(starting_num, ending_num):
+    for num in range(starting_num, (ending_num + 1)):
+        if num % 2 == 0:
+            if num == 2:
+                print(num)
+        elif num % 3 == 0:
+            if num == 3:
+                print(num)
+        elif num % 5 == 0:
+            if num == 5:
+                print(num)
+        elif num % 7 == 0:
+            if num == 7:
+                print(num)
+        else:
+            print(num)
 
 
+print_prime_nums_in_range(1, 51)
 
 # 3. Fibonacci
 
