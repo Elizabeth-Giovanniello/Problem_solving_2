@@ -37,6 +37,37 @@
 #i. Given numbers in an array: [5, 17, 77, 50] 
 #ii. Target: 55
 
+#Steps to solve:
+#1. create a function, include parameters for the target as well as the list of integers
+#2. create a for loop with a range of the length of the function
+#3. create a for loop within that for loop again for the range of the function
+#4. both for loops will be obtaining indices 
+#5. have an if statement checking if the number at the index from the first loop plus the number at the index from the second for
+# loop add up to the target
+#6. include a nested if statement to exclude when index one and two are the same, to fulfill the not using the same element
+# twice requirement
+#7. within nested if statement in for loops, return the two indices. this will be so the first solution found is the one
+#returned. I have to assume this is what "each input would have exactly one solution" is meant to mean, because there
+#seems to be no way to control that from within the function given that the input is passed in through an argument
+#8. also print a statement at the end of the function, which will only print if no two numbers add up to the target
+#9. tested; success
+
+#Honestly the instructions for this particular problem were very confusing, so I have built this function on the 
+# assumption that we want to be able to take in a list of any length, and any target number, and return the index positions
+# of the first two numbers that add up to the target. Hopefull that is the correct interpretation
+
+def indices_of_numbers_adding_up_to_target(target, list_of_nums):
+    for index in range(len(list_of_nums)):
+        for index_2 in range(len(list_of_nums)):
+            if list_of_nums[index] + list_of_nums[index_2] == target:
+                if index != index_2:
+                    return [index, index_2]
+    print("Unable to obtain result. No two numbers in the list given add up to the target.")
+
+test_list = [34, 45, 1, 23, 11, 16, 3, 5, 7]
+print(indices_of_numbers_adding_up_to_target(25, test_list))
+
+
 
 #2. Palindrome is a word, phrase, or sequence that reads the same backward as 
 #forward i.e. madam. Write code that takes a user input and checks to see if it 
