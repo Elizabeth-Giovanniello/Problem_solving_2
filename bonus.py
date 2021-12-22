@@ -328,7 +328,7 @@ is_valid_email = validate_email_address(email_address)
 #15. added an if statement in the for loop to see if it is the first character to be added to the conversion string. 
 # if it is, we will add it without a space. for all others, we will add a space first and then the number
 # 16. return the new string
-#17. test; 
+#17. test; success!
 
 def replace_letter_with_position_in_alphabet(orig_string):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -356,6 +356,8 @@ print(convert_phrase_to_nums)
 #i. Current lock: 3893
 #ii. Target lock: 5296
 
+
+
 #9. Happy Numbers
 #a. A happy number is a number defined by the following process: starting
 #with any positive integer, replace the number by the sum of the 
@@ -365,3 +367,24 @@ print(convert_phrase_to_nums)
 #10.Given a number, return the reciprocal of the reverse of the original number, 
 #as a double. 
 #a. Use case: If given 17, return 0.01408 (1/71)
+
+#Steps to solve:
+#1. we can use a lot of the same process as we did to reverse a string for the first part of this. 
+#2. we will make a function, create an empty string to hold the backwards string, and make a for loop
+#3. in the for loop we will use range and go from the end of the loop to the beginning
+#4. in the for loop we will add each character to the string
+#5. then we can convert the string to an integer 
+#6. then we'll divide one by the integer and return the result
+#7. test--success!
+
+def reciprocal_of_reverse_num(orig_value):
+    orig_str = str(orig_value)
+    reverse_str = ""
+    for index in range(len(orig_str) -1, -1, -1):
+            reverse_str += orig_str[index]
+    reverse_num = int(reverse_str)
+    reciprocal = 1 / reverse_num
+    return reciprocal
+
+print(reciprocal_of_reverse_num(34556))
+
