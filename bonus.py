@@ -142,7 +142,7 @@ print(test_array)
 # lowest number is 4, even though there is no 4 in the list
 # 19. created an if/else statement following the first while loop to account for single digit numbers and multi digit numbers
 #20. tested; realized code doesn't account for extra spaces/starting with spaces in the second half; added an if statement to resolve this
-#21. tested
+#21. tested; success
 
 def lowest_and_highest(string_of_nums):
     n = 0
@@ -185,14 +185,94 @@ print(test)
 
 
 
-
-
 #6. Create a method that accepts a string, check if it’s a valid email address and 
 #returns either true or false depending on the valuation. Think about what is 
 #necessary to have a valid email address.
 #a. Use case:
 #i. “mike1@gmail.com”  true
 #ii. “gmail.com”  false
+
+#Steps to solve:
+#1. a valid email address needs at least one character before the @ sign, an @ sign, and then something .com or .net or .edu or .gov
+#can't necessarily specify what website, like gmail/aol etc., because some emails are from a person's own website, or a university, etc.
+#2. we could have a series of if statements to just see if it even contains the @ sign or the ., but that won't 
+# account for if someone enters like l@sdfalkdfsajcom.
+#3. look up to see if special characters are allowed in email addresses; see long list of rules for what a valid email is
+#4. we may need to create lists or strings for different categories (like letters, numbers, special characters)
+#5. probably need to create for loops within for loops to check and see if each character is a certain type of category
+#6. Let's start. create and name the function
+#7. create variables for numbers letters and spec. characters. assign them everything of each character, as strings for now
+#8. we will probably need to create a variable for the first part of the email, and have a for loop go through
+# each character in the original string, and add each one to the variable for the first part until it hits an @ symbol
+#9. create if statements to return false if the string doesn't have an @ sign or a .
+#10. create for loop to address each character in the email
+#11. 
+
+
+def validate_email_address(email_provided):
+    email = email_provided.lower()
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    numbers = "1234567890"
+    special_characters = ".!#$%&'*+-/=?^_`{|"
+    recipient_name = ""
+    at_symbol = ""
+    domain_name = ""
+    top_level_domain = ""
+    if "@" not in email:
+        print("This is not a valid email.")
+        return False
+    if "." not in email:
+        print("This is not a valid email.")
+        return False
+    for character in email:
+        if character == "@":
+            at_symbol += character
+            if len(at_symbol) > 1:
+                print("This is not a valid email.")
+                return False
+        elif character != "@":
+            if at_symbol == "":
+                recipient_name += character
+            elif top_level_domain == "":
+                if character != ".":
+                    domain_name += character
+                else: 
+                    top_level_domain += character
+            else:
+                top_level_domain += character
+    if len(recipient_name) < 1 or len(recipient_name) > 64:
+        print("This is not a valid email.")
+        return False
+    elif recipient_name[0] not in letters and recipient_name[0] not in numbers:
+        print("This is not a valid email.")
+        return False
+    elif recipient_name[-1] not in letters and recipient_name[-1] not in numbers:
+        print("This is not a valid email.")
+        return False
+    prev_character = ""
+    for character in recipient_name:
+        if character not in letters and character not in numbers and character not in special_characters:
+            print("This is not a valid email.")
+            return False
+        elif character in special_characters:
+            if prev_character == "":
+                prev_character = character
+            else:
+                if prev_character == character:
+                    print("This is not a valid email.")
+                    return False
+        else:
+            prev_character = ""
+                
+email_address = "testing.what@gmail.com"
+is_valid_email = validate_email_address(email_address)
+
+#need to create a for loop for recipient name, to check for double special characters. also to say if character is not in letters/num/spec.char list, then it isn't valid
+
+
+
+
+
 
 #7. Create a method that takes in a string and replaces each letter with its 
 #appropriate position in the alphabet and returns the string
