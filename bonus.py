@@ -94,6 +94,7 @@ print(result)
 #5. create a variable to hold a new array to move the positive numbers to
 #6. create a third variable to hold a new array, and put in it the length of the positive numbers array and the value of the negative numbers variable
 #7. return new array
+#8. debug and test--it works!
 
 def count_pos_sum_of_neg(orig_array):
     sum_of_negs = 0
@@ -113,6 +114,77 @@ print(test_array)
 #5. Create a method that accepts a string of space separated numbers and 
 #returns the highest and lowest number as a string
 #a. Use case: “3 9 0 1 4 8 10 2” --> “0 10”
+
+#Steps to solve:
+#1. create and name a function
+#2. create a for loop 
+#3. create an if statement within the for loop for if the character is a space, and one for if it's not a space
+#4. create a variable for the highest number and the lowest number and place them at the beginning of the function, outside the for loop
+#5. assign variables for highest and lowest number euqal to 0
+#6. create second state of if statements within the for loop to convert the caracter in the string to an integer, then compare it to the number set as the lowest/highest numnber
+#7. outside the for loop, create a new string adding the lowest number to the highest number
+#8. convert the numbers to strings within the new string and add a space
+#9. return the new string
+#10. realize that if all numbers are negative then 0 will be too high, or if the lowest number is higher than zero then 0 will be too low
+#change highest and lowest num variables at beginning to equal the number at index 0 instead
+#11. test; realize function works but can only evaluate a single digit at a time, so the highest number can only go up to 9 even if it's actually 999
+#12. added in a temporary variable to hold each integer until the next space in the string comes. then when 
+#the next space comes, convert the string in the temporary variable to an integer and compare it to the highest and 
+# lowest num variables. set the temporary variable back to an empty string
+#13. test; realize if the string does not end in a space, the last number will never be evaluated. 
+#14. copy logic to compare number to lowest and highest variables, and place it at the end of the function outside the for loop
+#15. test; success
+#16. code currently doesn't work if string starts with a space. which is probably fine, but to make it more versatile
+# I will add in an if statement when setting highest and lowest num variables in the beginning 
+#17. changed if statement to while statement so that the code just uses the first non space character in the string
+#18. realized this still only works for the first character not the whole number; this is a problem with a negative,
+# or if all the numbers are multi-digit numbers, then if the first number is 43 for example it will claim the 
+# lowest number is 4, even though there is no 4 in the list
+# 19. created an if/else statement following the first while loop to account for single digit numbers and multi digit numbers
+#20. tested; realized code doesn't account for extra spaces/starting with spaces in the second half; added an if statement to resolve this
+#21. tested
+
+def lowest_and_highest(string_of_nums):
+    n = 0
+    first_num = ""
+    while string_of_nums[n] == " ":
+        n += 1
+    if string_of_nums[n+1] == " ":
+        highest_num = int(string_of_nums[n])
+        lowest_num =  int(string_of_nums[n])
+    else:
+        while string_of_nums[n+1] != " ":
+            first_num += string_of_nums[n]
+            n += 1
+        first_num += string_of_nums[n]
+        highest_num = int(first_num)
+        lowest_num = int(first_num)
+    temp_num = ""
+    for character in string_of_nums:
+        if character != " ":
+            temp_num += character
+        else:
+            if temp_num != "":
+                num = int(temp_num)
+                temp_num = ""
+                if num < lowest_num:
+                    lowest_num = num
+                elif num > highest_num:
+                    highest_num = num
+    if temp_num != "":
+        num = int(temp_num)
+        if num < lowest_num:
+            lowest_num = num
+        elif num > highest_num:
+            highest_num = num
+    new_str = str(lowest_num) + " " + str(highest_num)
+    return new_str
+
+test = lowest_and_highest("-12 345 -4 -4 -4   -5  -6 -6789 0  ") 
+print(test)
+
+
+
 
 
 #6. Create a method that accepts a string, check if it’s a valid email address and 
