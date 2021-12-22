@@ -310,6 +310,43 @@ is_valid_email = validate_email_address(email_address)
 #i. “abc”  “1 2 3”
 #ii. “coding is fun”  “3 15 4 9 14 7 9 19 6 21 14”
 
+#Steps to solve:
+#1. we know we will need a for loop to analyze each character in the string
+#2. probably the simplest way to do it will be to use indices. 
+#3. search how to find the index of a specific element in python: .index() function
+#4. create and name a function
+#5. create a string with the alphabet
+#6. convert input to lowercase so we don't have to deal with caps 
+#7. create an empty string to hold the converted string
+#8. create for loop
+#9. create an if statement to account for spaces or any other characters that aren't letters
+#10. create a variable and set it equal to the index of the character in the alphabet plus one
+#11. convert the value to a string
+#12. add the string value of the variable to our conversion string
+#13. the example has spaces. add a space after the value
+#14. the end of the string doesn't have a space. how do we account for this?
+#15. added an if statement in the for loop to see if it is the first character to be added to the conversion string. 
+# if it is, we will add it without a space. for all others, we will add a space first and then the number
+# 16. return the new string
+#17. test; 
+
+def replace_letter_with_position_in_alphabet(orig_string):
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    new_str = orig_string.lower()
+    num_str = ""
+    for character in new_str:
+        if character in alphabet:  
+            num = str(alphabet.index(character) + 1)
+            if num_str == "":
+                num_str += num
+            else:
+                num_str += " " + num
+    return num_str
+
+convert_phrase_to_nums = replace_letter_with_position_in_alphabet("What's good party people??? Test it!")
+print(convert_phrase_to_nums)
+
+
 #8. A briefcase has a four-digit rolling-lock. Each digit is a number from 0-9 that 
 #can be rolled either forwards or backwards. Write a method that returns the 
 #smallest number of turns it takes to transform the lock from current 
