@@ -86,6 +86,29 @@ print(result)
 #and the second element is the sum of negative numbers. 
 #a. Use case: [7, 9, -3, -32, 107, -1, 36, 95, -14, -99, 21]
 
+#Steps to solve:
+#1. create and name a function
+#2. create an if statement for negative numbers
+#3. create an if statement for positive numbers
+#4. create a variable for sum of negative numbers
+#5. create a variable to hold a new array to move the positive numbers to
+#6. create a third variable to hold a new array, and put in it the length of the positive numbers array and the value of the negative numbers variable
+#7. return new array
+
+def count_pos_sum_of_neg(orig_array):
+    sum_of_negs = 0
+    array_of_pos = []
+    for number in orig_array:
+        if number < 0:
+            sum_of_negs += number
+        else:
+            array_of_pos.append(number)
+    new_array = [len(array_of_pos), sum_of_negs]
+    return new_array
+
+test_array = count_pos_sum_of_neg([7, 9, -3, -32, 107, -1, 36, 95, -14, -99, 21])
+print(test_array)
+
 
 #5. Create a method that accepts a string of space separated numbers and 
 #returns the highest and lowest number as a string
