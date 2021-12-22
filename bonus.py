@@ -206,10 +206,19 @@ print(test)
 # each character in the original string, and add each one to the variable for the first part until it hits an @ symbol
 #9. create if statements to return false if the string doesn't have an @ sign or a .
 #10. create for loop to address each character in the email
-#11. 
+#11. within the for loop, separate each part of the email address into different categories
+#12. then assess the category for the recipient name with the specific rules for that category
+#13. then assess the domain name with the rules for that category
+#14. then assess top level domain name with rules for that category. Ideally, we would make a list of all
+# possible top level domain names and check to see if it is in that list. But because that list is almost 2000 and doesn't account
+# for potential add-ons (like the list includes co and uk but not co.uk, which is also valid) instead, I will make a non-comprehensive
+#list that includes only a few very common top level domain names
+#15. this list also can't account for mismatches like gmail needing to end in .com, because we can't have a comprehensive list
+#of potential domain names and what they match to
 
 
 def validate_email_address(email_provided):
+    top_level_domains = [".net", ".com", ".edu", ".org", ".gov"]
     email = email_provided.lower()
     letters = "abcdefghijklmnopqrstuvwxyz"
     numbers = "1234567890"
@@ -263,7 +272,28 @@ def validate_email_address(email_provided):
                     return False
         else:
             prev_character = ""
-                
+    if len(domain_name) < 1 or len(domain_name) > 253:
+        print("This is not a valid email.")
+        return False
+    for character in domain_name:
+        if character not in letters and character not in numbers:
+            if character != "." and character != "-":
+                print("This is not a valid email.")
+                return False
+            else:
+                if prev_character == "":
+                    prev_character = character
+                else:
+                    print("This is not a valid email.")
+                    return False
+        else:
+            prev_character = ""
+    if top_level_domain not in top_level_domains:
+        print("This is not a valid email.")
+        return False
+    print("This is a valid email.")
+    return True
+
 email_address = "testing.what@gmail.com"
 is_valid_email = validate_email_address(email_address)
 
