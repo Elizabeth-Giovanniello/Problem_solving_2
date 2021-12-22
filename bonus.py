@@ -42,6 +42,43 @@
 #forward i.e. madam. Write code that takes a user input and checks to see if it 
 #is a Palindrome and reports the result. You must handle spaces. 
 
+#Steps to solve:
+#1. Already created palindrome checker in previous worksheet, but did not account for spaces.
+#2. Paste previous palindrome checker as base.
+#3. function to reverse string will include spaces, but that is so Hello World becomes dlroW olleH. That means
+# if we passed in the phrase "A man, a plan, a canal: Panama" it would reverse it with all spaces and characters,
+#so it would not be exactly equal to the original, and it would say it's not a palindrome when it is
+#4. so we need a way to ignore spaces and other characters
+#5. we will try to do this from within the palindrome function instead of the reverse function, so that we don't limit the 
+# reverse function's utility
+#6. we will have to create a new empty string, and a for loop that stores all the letters in it and none of the other characters
+#7. we will also convert it to all lowercase
+#8. then we will see if this new letters-only string is equal to its reverse
+#9. test; success!
+
+def reverse_str(original_str):
+    converted_str = ""
+    for character in original_str:
+        converted_str = character + converted_str
+    return converted_str
+
+test_reverse = reverse_str("lizzy")
+print(test_reverse)
+
+def palindrome_checker():
+    user_entry = input("Enter word or phrase to see if it is a palindrome. ").lower()
+    user_entry_letters_only = ""
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    for character in user_entry:
+        if character in letters: 
+            user_entry_letters_only += character
+    if user_entry_letters_only == reverse_str(user_entry_letters_only):
+        print("Yes, this is a palindrome.")
+    else:
+        print("Sorry, this is not a palindrome.")
+
+palindrome_checker()
+
 
 #3. Given a list of integers, return a bool that represents whether or not all 
 #integers in the list can form a sequence of incrementing integers
@@ -363,6 +400,9 @@ print(convert_phrase_to_nums)
 #with any positive integer, replace the number by the sum of the 
 #squares of its digits, and repeat the process until the number equals 1. 
 #An example of a happy number is 19
+
+#DONE ON PREVIOUS WORKSHEET
+
 
 #10.Given a number, return the reciprocal of the reverse of the original number, 
 #as a double. 
