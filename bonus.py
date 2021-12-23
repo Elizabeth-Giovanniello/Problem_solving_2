@@ -120,32 +120,41 @@ palindrome_checker()
 #problem solving steps:
 #1. create and name a function
 #2. create a parameter to pass in a list of integers
-#3. create a while loop so the it continues to run
-#4. outside the while loop, create a variable and set it equal to 1
-#5. within the while loop create a second while loop that checks if our count variable is in the list
-#6. 
+#3. create a variable to hold the lowest number and assign it to index 0 of the list
+#4. create a for loop going through a range (can exclude index 0) to compare each index of the list to the number at index 0
+#5. any time a number is lower than the lowest number variable, it replaces the value of the lowest num variable
+#6. once for loop is complete, create a new variable to count and set it equal to the lowest number variable
+#(it's not really necessary to use a new variable; we could keep using the lowest_num variable, but because
+# it will no longer be containing the lowest number, readability is better with a new variable)
+#7. create a while loop so it continues to run as much as necessary
+#8. within the while loop, remove count from the list; then check to see if the list still contains the value of count
+#9. if the list still contains the value, then the value was there twice, and therefore is not incrementing; return false
+#10. then create an elif statement to see if the next number above the current count is in the list
+#11. if it isn't, then either the list is not incrementing or that was the highest variable in the list.
+# create an if statement for each possibility. if it was the last number in the list, return True. otherwise, return False
+#12. test; success!
 
 def can_form_incrementing_int_sequence(list_of_integers):
-    something = True
-    count = 1 #COME BACK TO THIS BECAUSE RN IT ONLY WORKS FOR POSITIVES
-    while something is True:
-        while count in list_of_integers:
-            list_of_integers.remove(count)
-            if count in list_of_integers:
-                return False
-            elif (count + 1) in list_of_integers:
-                count += 1
-            else:
-                if len(list_of_integers) == 0:
-                    return True
-                else:
-                    return False
-        if count not in list_of_integers:
+    lowest_num = list_of_integers[0]
+    for index in range(1, len(list_of_integers)):
+        if list_of_integers[index] < lowest_num:
+            lowest_num = list_of_integers[index]
+    count = lowest_num
+    while count in list_of_integers:
+        list_of_integers.remove(count)
+        if count in list_of_integers:
+            return False
+        elif (count + 1) in list_of_integers:
             count += 1
-        
-list_of_nums = [5, 7, 3, 8, 6]
-result = can_form_incrementing_int_sequence(list_of_nums)
-print(result)
+        else:
+            if len(list_of_integers) == 0:
+                return True
+            else:
+                return False
+
+example_list = [7, 1, 9, -1, 3, 0, 2, 6, 8, 5]
+print(can_form_incrementing_int_sequence(example_list))
+
 
 
 
@@ -365,7 +374,6 @@ def validate_email_address(email_provided):
 email_address = "testing.what@gmail.com"
 is_valid_email = validate_email_address(email_address)
 
-#need to create a for loop for recipient name, to check for double special characters. also to say if character is not in letters/num/spec.char list, then it isn't valid
 
 
 
@@ -400,9 +408,9 @@ is_valid_email = validate_email_address(email_address)
 
 def replace_letter_with_position_in_alphabet(orig_string):
     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    new_str = orig_string.lower()
+    orig_string = orig_string.lower()
     num_str = ""
-    for character in new_str:
+    for character in orig_string:
         if character in alphabet:  
             num = str(alphabet.index(character) + 1)
             if num_str == "":
