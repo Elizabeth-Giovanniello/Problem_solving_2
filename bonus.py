@@ -474,7 +474,50 @@ print(open_brief_case)
 #squares of its digits, and repeat the process until the number equals 1. 
 #An example of a happy number is 19
 
-#DONE ON PREVIOUS WORKSHEET
+#COPIED FROM PREVIOUS WORKSHEET
+
+#Steps to solve:
+#1. Read and understand what a happy number is.
+#2. Just by looking at this, we will probably need to use loops, possibly both a for loop and a while loop, and possibly need to use indexing
+#3. name the function
+#4. create a parameter for the function
+#5. search to see if it is possible to have a for loop loop through an integer; it is not. Same for finding the index.
+#6. we will need to temporarily convert the integer to a string for this to work
+#7. create a for loop to loop through each character in the variable used as the parameter
+#8. create a variable for the new number and have it outside the for loop, set equal to 0
+#8. within the for loop, have each character converted back into an integer and multipy by itself
+#9. then add the squared number to the new number variable
+#10. create an outer while loop so the loop continues until the number equals 1
+#11. Now we need a way of determining when a number is sad, otherwise the while loop will go forever
+#12. Researched and found that 7 is the only happy number between 1 and 10
+#13. Create an if statement for when the new_num variable is a single digit again
+#14. Create an if statement for when it is 7 (because once a number gets to single digits and is anything other than 1 or 7, we know it can never be happy)
+#15. return false if the number is single digit and not 7
+#16. debug; see issue because number isn't updating
+#17. set new_num equal to num at the end of the for loop. move where num is converted to a string to within the while loop, 
+# so that the string updates with each round
+#18. debug; issue because new_num isn't resetting. move the statement setting new_num to 0 within the while loop
+#19. return True at end, if function makes it past the while loop
+
+def determine_if_happy(num):
+    num = int(num)
+    while num != 1:
+        num_str = str(num)
+        new_num = 0
+        for character in num_str:
+            integer = int(character)
+            squared_num = integer * integer
+            new_num += squared_num
+            num = new_num
+        if new_num > 1 and new_num <= 9:
+            if new_num != 7:
+                print("This value is not a happy number")
+                return False
+    print("This value is a happy number!")
+    return True
+    
+is_happy = (determine_if_happy(999))
+print(is_happy)
 
 
 #10.Given a number, return the reciprocal of the reverse of the original number, 

@@ -59,7 +59,7 @@ def determine_if_happy(num):
     print("This value is a happy number!")
     return True
     
-is_happy = (determine_if_happy(100))
+is_happy = (determine_if_happy(999))
 print(is_happy)
 
         
