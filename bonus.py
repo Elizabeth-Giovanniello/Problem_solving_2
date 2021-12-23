@@ -424,6 +424,40 @@ print(convert_phrase_to_nums)
 #i. Current lock: 3893
 #ii. Target lock: 5296
 
+#Steps to solve
+#1. create a function
+#2. we will probably need to create a variable to count the total turns. start by assigning that variable to 0
+#3. then we will just need to know the difference between the current lock at each index and the target lock at that same index
+#4. we will make that number positive regardless, then add it to the count variable
+#5. since it will be exactly 4 digits every time, we don't need a for loop. but we will use one because it is prettier.
+#6. realize that this function works but does not account for the fact that the lock rolls in both directions
+#7. realize it takes 10 turns in either direction to get a number back to itself. so the highest acceptable amount of turns should
+# be 5, because if it's 5 it's the same either way. Any difference higher than 5 and it is quicker to go the opposite direction
+#8. make an if statement for if the difference is less than or equal to five, add it to the count
+#9. make an else statement where if the difference is greater than 5, subract the difference from 10 and add that to the count
+#10. test; issue because cannot take index of a number. convert combos to string, then when finding difference convert 
+#individual numbers back to integers
+#11. test again; success!
+
+def smallest_number_of_turns_to_unlock(current_combo, correct_combo):
+    count = 0
+    current_combo = str(current_combo)
+    correct_combo = str(correct_combo)
+    for index in range(4):
+        difference = int(current_combo[index]) - int(correct_combo[index])
+        if difference < 0:
+            difference *= -1
+        if difference <= 5:
+            count += difference
+        else:
+            opp_diff = 10 - difference
+            count += opp_diff
+    return count
+
+open_brief_case = smallest_number_of_turns_to_unlock(3893, 5296)
+print(open_brief_case)
+
+
 
 
 #9. Happy Numbers
